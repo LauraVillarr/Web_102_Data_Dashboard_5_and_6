@@ -66,3 +66,64 @@ of issue getting my checkbox filter to work with the filtering implementation I 
     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
     See the License for the specific language governing permissions and
     limitations under the License.
+
+
+# Web Development Project 6 - *Data Dashboard (RecipeDash) Part 2*
+
+Submitted by: **Laura Villarreal**
+
+This web app: **Continues from part 1 by adding two charts to the main dashboard: one for the cooking times of each recipe in the dashboard and the other
+displaying the price per serving for each recipe in the dashboard. It also includes a new recipe detail page that gives some extra information about each recipe
+including the ingredients, directions, and a link to the page where the recipe came from.**
+
+Time spent: **7** hours spent in total
+
+## Required Features
+
+The following **required** functionality is completed:
+
+- [X] **The app includes at least two unique chart developed using the fetched data that tell an interesting story**
+- [X] **Clicking on an item in the list view displays more details about it**
+- [X] **Clicking on an item has a direct, unique link to that item's detail view page**
+
+
+The following **optional** features are implemented:
+
+- [ ] The site's customized dashboard contains more content that explains what is interesting about the data
+- [ ] The site allows users to toggle between different data visualizations
+
+The following **additional** features are implemented:
+
+* [X] Made the recipeDash logo and dashboard button link back to the home page
+* [X] Modified how the data in the summary statistics is calculated a bit. Now only meals with health scores >= 30 are considered healthy and I rounded up the average for calculating average cooktimes.
+* [X] Created a simple page that occurs whenever a user inputs a link that does not exist. It will link the user back to the home page.
+
+## Video Walkthrough
+
+Here's a walkthrough of implemented user stories:
+
+<img src='https://github.com/LauraVillarr/Web_102_Data_Dashboard_5_and_6/blob/master/project6_data_dashboard_walkthrough.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+
+<!-- Replace this with whatever GIF tool you used! -->
+GIF created with ...  
+[ScreenToGif](https://www.screentogif.com/) for Windows
+
+## Notes
+
+I had some issues in laying everything out in the way I wanted it. I initially had the main recipe part of the dashboard and summary statistics centered, but I needed to determine how to move it properly to the left while still keeping it aligned in order to make room for the charts. Because of this change, styling the detail page to be centered was a bit challenging as well. I also had a few issues with getting data to display on the details page with the usestate variable, but most of the issues I had with that particular problem were sorted out beforehand when I did the lab which did a similar thing.
+
+## License
+
+    Copyright [2023] [name of copyright owner]
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+        http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
