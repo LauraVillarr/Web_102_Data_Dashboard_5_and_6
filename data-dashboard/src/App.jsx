@@ -2,6 +2,9 @@ import { useState, useEffect } from 'react'
 import './App.css'
 import DataTable from './Components/dataTable';
 import Card from './Components/card';
+import DataChart from './Components/dataChart';
+import RecipeCostChart from './Components/recipeCostChart';
+
 const ACCESS_KEY = import.meta.env.VITE_APP_ACCESS_KEY;
 
 function App() {
@@ -22,7 +25,7 @@ function App() {
   const getHealthyRecipes = () => {
     let numHealthy = 0;
     for(let i = 0; i < Object.keys(recipeList.recipes).length; i++) {
-      if(recipeList.recipes[i].healthScore >= 10) {
+      if(recipeList.recipes[i].healthScore >= 30) {
         numHealthy++;
       }
     }
@@ -33,9 +36,9 @@ function App() {
     let sumReadyTime = 0;
     let avgReadyTime = 0;
     for(let i = 0; i < Object.keys(recipeList.recipes).length; i++) {
-      sumReadyTime += recipeList.recipes[i].readyInMinutes
+      sumReadyTime += recipeList.recipes[i].readyInMinutes;
     }
-    avgReadyTime = sumReadyTime / Object.keys(recipeList.recipes).length;
+    avgReadyTime = Math.ceil(sumReadyTime / Object.keys(recipeList.recipes).length);
 
     setReadyTime(avgReadyTime);
   }
@@ -63,53 +66,53 @@ function App() {
  
   return (
     <div className="App">
-      <div className='navigation'>
-        <h1 className='header'>RecipeDash🍱</h1>
-        <h2 className='nav_element'>🏠 Dashboard</h2>
-        <h2 className='nav_element'>🔍 Search</h2>
-        <h2 className='nav_element'>❗ About</h2>
-      </div>
-      <div className='statistics'>
-        <Card title="Num Recipes" data={numRecipeData} />
-        <Card title="Healthy Recipes" data={healthyData} />
-        <Card title="Average Cooking Time" data={readyTime} /> 
-      </div>
-      <div className='list card'>
-        <div className='search'>
-          <input
-          type="text"
-          placeholder="Search by name..."
-          onChange={event => setSearchInput(event.target.value)}
-          />
-          <label className='check_container'>
-          Healthy Recipes
-          <input type="checkbox"
-          checked={checked}
-          onChange={event => setCheckedState(!checked)}></input>
-          </label>
+      <div className='page-content'>
+        <div className='content'>
+          <div className='statistics'>
+            <Card title="Num Recipes" data={numRecipeData} />
+            <Card title="Healthy Recipes" data={healthyData} />
+            <Card title="Average Cooking Time" data={readyTime} /> 
+          </div>
+          <div className='list card'>
+            <div className='search'>
+              <input
+              type="text"
+              placeholder="Search by name..."
+              onChange={event => setSearchInput(event.target.value)}
+              />
+              <label className='check_container'>
+              Healthy Recipes
+              <input type="checkbox"
+              checked={checked}
+              onChange={event => setCheckedState(!checked)}></input>
+              </label>
+            </div>
+            {recipeList ? (
+              <DataTable recipeList={recipeList} searchInput={searchInput} checked={checked}/>
+            ) : (
+            <div className='data_table'>
+              <table>
+                <thead>
+                  <tr>
+                    <th>Name</th>
+                    <th>Cooking Time</th>
+                    <th>Health Score</th>
+                    <th>Source</th>
+                    <th>Image</th>
+                  </tr>
+                  <tr></tr>
+                </thead>
+              </table>
+            </div>
+              )
+            }
+          </div>
         </div>
-        {recipeList ? (
-          <DataTable recipeList={recipeList} searchInput={searchInput} checked={checked}/>
-        ) : (
-        <div className='data_table'>
-          <table>
-            <thead>
-              <tr>
-                <th>Name</th>
-                <th>Cooking Time</th>
-                <th>Health Score</th>
-                <th>Source</th>
-                <th>Image</th>
-              </tr>
-              <tr></tr>
-            </thead>
-          </table>
+        <div className='chart_content chart_card'>
+          <DataChart recipeList={recipeList} />
+          <RecipeCostChart recipeList={recipeList} />
         </div>
-          )
-        }
       </div>
-      
-      
       
     </div>
   )

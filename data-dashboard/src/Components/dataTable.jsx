@@ -1,10 +1,6 @@
-import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 
 const DataTable = ({recipeList, searchInput, checked}) => {
-
-  // useEffect(() => {
-  //   console.log(Object.values(recipeList.recipes[0].healthScore));
-  // }, [checked])
     
     return(
         <div className='data_table'>
@@ -14,8 +10,8 @@ const DataTable = ({recipeList, searchInput, checked}) => {
                 <th>Name</th>
                 <th>Cooking Time</th>
                 <th>Health Score</th>
-                <th>Source</th>
                 <th>Image</th>
+                <th>Link</th>
               </tr>
             </thead>
             <tbody>
@@ -26,7 +22,7 @@ const DataTable = ({recipeList, searchInput, checked}) => {
                 else if(checked == false && Object.values(val[1].title)
                 .join("")
                 .toLowerCase()
-                .includes(searchInput.toLowerCase()) || (checked == true && val[1].healthScore >= 10)) {
+                .includes(searchInput.toLowerCase()) || (checked == true && val[1].healthScore >= 30)) {
                   return val;
                 }
               }).map(([index]) => 
@@ -34,10 +30,14 @@ const DataTable = ({recipeList, searchInput, checked}) => {
                             <td className="cell">{recipeList.recipes[index].title}</td>
                             <td className="cell">{recipeList.recipes[index].readyInMinutes + " minutes"}</td>
                             <td className="cell">{recipeList.recipes[index].healthScore}</td>
-                            <td className="cell">{recipeList.recipes[index].sourceUrl}</td>
                             <td className="cell">
                                 <img src={recipeList.recipes[index].image} 
                                     alt={`Image of a ${recipeList.recipes[index].title}`} />
+                            </td>
+                            <td className="cell">
+                              <Link to={`/recipeDetails/${recipeList.recipes[index].id}`}>
+                                🔗
+                              </Link>
                             </td>
                         </tr>
                     )  
